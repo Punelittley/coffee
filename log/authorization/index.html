@@ -20,17 +20,13 @@
 body {
     display: flex;
     flex-direction: column;
-    /* Изменяем max-height на min-height */
     min-height: 100vh; 
     margin: 0;
 }
 main {
-    /* flex: 1 заставляет этот блок занимать всё свободное пространство, 
-       прижимая футер к самому низу */
     flex: 1 0 auto;
 }
 footer {
-    /* Чтобы футер не сжимался */
     flex-shrink: 0;
 }
 </style>

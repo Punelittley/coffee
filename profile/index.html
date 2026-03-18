@@ -240,7 +240,7 @@
                             <b>Заказ №${o.id}</b>
                             <span style="color:#6F4E37;font-weight:700;">${STATUS_LABELS[o.status] || o.status}</span>
                         </div>
-                        <p>Сумма: ${o.total} ₽ | ${new Date(o.created_at).toLocaleString('ru')}</p>
+                        <p>Сумма: ${o.total} ₽ | ${new Date(o.created_at + 'Z').toLocaleString('ru-RU')}</p>
                         ${o.items.map(i => `<p>• ${i.product_name} × ${i.quantity} — ${i.price} ₽</p>`).join('')}
                     </div>
                 `).join('');

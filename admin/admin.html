@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора — Заря и Зерно</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="/index.html">
+            <img src="/assets/images/logo.svg" alt="Логотип кофейни">
+        </a>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <ul>
+                <a href="/index.html#section1">
+                    <li>О нас</li>
+                </a>
+                <a href="/index.html#section2">
+                    <li>Меню</li>
+                </a>
+                <a href="/index.html#section3">
+                    <li>Отзывы</li>
+                </a>
+                <a href="/index.html#section4">
+                    <li>Контакты</li>
+                </a>
+                <a href="/index.html#section5">
+                    <li>Вопросы</li>
+                </a>
+            </ul>
+
+            <div class="theme-toggle">
+                <img src="/assets/images/moon.svg" alt="Темная тема" id="moon-icon" class="theme-icon active">
+                <img src="/assets/images/sun.svg" alt="Светлая тема" id="sun-icon" class="theme-icon">
+            </div>
+            <img src="/assets/images/bag.svg" alt="Корзина" onclick="cart()" style="cursor:pointer">
+
+            <div class="auth-icon-wrap">
+                <a href="/log/authorization/" class="auth-login-btn" style="display:inline-block;">
+                    <img src="/assets/images/account.svg" alt="Войти" title="Войти" style="cursor:pointer">
+                </a>
+                <img src="/assets/images/account.svg" alt="Профиль" title="Профиль" class="auth-profile-btn"
+                    style="display:none;cursor:pointer" onclick="login()">
+            </div>
+        </nav>
+
+        <div class="mobile-nav" id="mobileNav">
+            <span class="close-mobile-nav" id="closeMobileNav">&times;</span>
+            <ul>
+                <li><a href="/index.html#section1">О нас</a></li>
+                <li><a href="/index.html#section2">Меню</a></li>
+                <li><a href="/index.html#section3">Отзывы</a></li>
+                <li><a href="/index.html#section4">Контакты</a></li>
+                <li><a href="/index.html#section5">Вопросы</a></li>
+            </ul>
+            <div class="mobile-nav-icons">
+                <div class="theme-toggle">
+                    <img src="/assets/images/moon.svg" alt="Темная тема" id="moon-icon-mobile"
+                        class="theme-icon active">
+                    <img src="/assets/images/sun.svg" alt="Светлая тема" id="sun-icon-mobile" class="theme-icon">
+                </div>
+                <img src="/assets/images/bag.svg" alt="Корзина" onclick="cart()">
+                <div class="auth-icon-wrap">
+                    <a href="/log/authorization/" class="auth-login-btn" style="display:inline-block;">
+                        <img src="/assets/images/account.svg" alt="Войти">
+                    </a>
+                    <img src="/assets/images/account.svg" alt="Профиль" class="auth-profile-btn"
+                        style="display:none;cursor:pointer" onclick="login()">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="admin-header">
+            <h2>Панель администратора</h2>
+            <div class="admin-info">
+                <span class="admin-badge">Администратор</span>
+                <span id="adminName">Загрузка...</span>
+                <button class="logout-btn" onclick="doLogout()">Выйти</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="dashboard">Дашборд</div>
+            <div class="tab" data-tab="orders">Заказы</div>
+            <div class="tab" data-tab="menu">Меню</div>
+            <div class="tab" data-tab="ingredients">Ингредиенты</div>
+            <div class="tab" data-tab="users">Пользователи</div>
+            <div class="tab" data-tab="questions">Вопросы</div>
+            <div class="tab" data-tab="reports">Отчёты</div>
+        </div>
+        <div id="dashboardPanel" class="panel active"></div>
+        <div id="ordersPanel" class="panel">
+            <div class="filter-section">
+                <label>Статус:</label>
+                <select id="orderStatusFilter">
+                    <option value="all">Все</option>
+                    <option value="new">Новые</option>
+                    <option value="cooking">Готовятся</option>
+                    <option value="ready">Готовы</option>
+                    <option value="delivered">Выданы</option>
+                </select>
+                <button onclick="loadOrders()">Применить</button>
+            </div>
+            <div id="ordersList"></div>
+        </div>
+        <div id="menuPanel" class="panel">
+            <button class="add-btn" onclick="showAddProduct()">+ Добавить товар</button>
+            <div id="productsTable"></div>
+        </div>
+        <div id="ingredientsPanel" class="panel">
+            <button class="add-btn" onclick="showAddIngredient()">+ Добавить ингредиент</button>
+            <div id="ingredientsTable"></div>
+        </div>
+        <div id="usersPanel" class="panel">
+            <div id="usersTable"></div>
+        </div>
+        <div id="questionsPanel" class="panel">
+            <div id="questionsList"></div>
+        </div>
+        <div id="reportsPanel" class="panel">
+            <button class="add-btn" onclick="loadReports()">Обновить отчёт</button>
+            <div id="reportsContent"></div>
+        </div>
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-content" id="modalContent">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/class.js"></script>
+    <script>
+        const STATUS_LABELS = { new: 'Новый', cooking: 'Готовится', ready: 'Готов', delivered: 'Выдан' };
+        const STATUS_NEXT = { new: 'cooking', cooking: 'ready', ready: 'delivered' };
+        document.addEventListener('DOMContentLoaded', async () => {
+            const um = await getUserManager();
+            const user = um.readCurrentUser();
+            if (!user || user.role !== 'admin') {
+                window.location.href = '/log/authorization/';
+                return;
+            }
+            document.getElementById('adminName').textContent = (user.surname || '') + ' ' + (user.name || '');
+            loadDashboard();
+        });
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                const id = this.dataset.tab + 'Panel';
+                document.getElementById(id).classList.add('active');
+                const t = this.dataset.tab;
+                if (t === 'dashboard') loadDashboard();
+                else if (t === 'orders') loadOrders();
+                else if (t === 'menu') loadProducts();
+                else if (t === 'ingredients') loadIngredients();
+                else if (t === 'users') loadUsers();
+                else if (t === 'questions') loadQuestions();
+                else if (t === 'reports') loadReports();
+            });
+        });
+
+        async function loadDashboard() {
+            const res = await fetch('/api/admin/dashboard');
+            const d = await res.json();
+            const panel = document.getElementById('dashboardPanel');
+            panel.innerHTML = `
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Заказов сегодня</h3><p>${d.ordersToday}</p></div>
+            <div class="stat-card"><h3>Выручка</h3><p>${d.revenueToday} ₽</p></div>
+            <div class="stat-card"><h3>Средний чек</h3><p>${d.avgCheck} ₽</p></div>
+            <div class="stat-card"><h3>Клиентов за нед.</h3><p>${d.activeClients}</p></div>
+            <div class="stat-card"><h3>Всего юзеров</h3><p>${d.totalUsers}</p></div>
+        </div>
+        <div class="dashboard-bottom">
+            <div class="dashboard-block">
+                <h3>Последние заказы</h3>
+                ${d.recentOrders.map(o => `
+                    <div class="order-item">
+                        <span class="order-number">№${o.id}</span>
+                        <span>${o.surname || ''} ${o.user_name || ''}</span>
+                        <span>${o.total} ₽</span>
+                        <span class="order-status status-${o.status}">${STATUS_LABELS[o.status] || o.status}</span>
+                        ${STATUS_NEXT[o.status] ? `<button onclick="advanceOrder(${o.id},'${STATUS_NEXT[o.status]}')">${STATUS_LABELS[STATUS_NEXT[o.status]]}</button>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="dashboard-block">
+                <h3>Мало на складе</h3>
+                ${d.lowIngredients.length ? d.lowIngredients.map(i =>
+                `<p style="color:${i.quantity <= 0 ? 'red' : 'orange'}">${i.name}: ${i.quantity} ${i.unit} (мин. ${i.min_stock})</p>`
+            ).join('') : '<p>Всё в норме</p>'}
+            </div>
+        </div>`;
+        }
+
+        async function loadOrders() {
+            const status = document.getElementById('orderStatusFilter').value;
+            const res = await fetch('/api/admin/orders?status=' + status);
+            const orders = await res.json();
+            const el = document.getElementById('ordersList');
+            if (!orders.length) { el.innerHTML = '<p>Заказов нет</p>'; return; }
+            el.innerHTML = orders.map(o => `
+        <div class="order-item">
+            <div class="order-info">
+                <span class="order-number">№${o.id}</span>
+                <span>${o.surname || ''} ${o.user_name || ''}</span>
+                <span>${o.total} ₽</span>
+                <span>${new Date(o.created_at).toLocaleString('ru')}</span>
+                <span class="order-status status-${o.status}">${STATUS_LABELS[o.status] || o.status}</span>
+            </div>
+            <div class="order-actions">
+                <button onclick="showOrderDetails(${o.id})">Детали</button>
+                ${STATUS_NEXT[o.status] ? `<button onclick="advanceOrder(${o.id},'${STATUS_NEXT[o.status]}')">${STATUS_LABELS[STATUS_NEXT[o.status]]}</button>` : ''}
+            </div>
+        </div>`).join('');
+        }
+        async function advanceOrder(id, status) {
+            const res = await fetch('/api/admin/orders/' + id + '/status', {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+            const data = await res.json();
+            if (!res.ok) { alert(data.error); return; }
+            const activeTab = document.querySelector('.tab.active').dataset.tab;
+            if (activeTab === 'orders') loadOrders();
+            else loadDashboard();
+        }
+
+        async function showOrderDetails(id) {
+            const res = await fetch('/api/admin/orders?status=all');
+            const orders = await res.json();
+            const o = orders.find(x => x.id === id);
+            if (!o) return;
+            openModal(`<h3>Заказ №${o.id}</h3>
+        <p><b>Клиент:</b> ${o.surname || ''} ${o.user_name || ''}</p>
+        <p><b>Статус:</b> ${STATUS_LABELS[o.status]}</p>
+        <p><b>Сумма:</b> ${o.total} ₽</p>
+        <p><b>Дата:</b> ${new Date(o.created_at).toLocaleString('ru')}</p>
+        <h4>Позиции:</h4>
+        ${o.items.map(i => `<p>${i.product_name} × ${i.quantity} — ${i.price} ₽</p>`).join('')}`);
+        }
+        async function loadProducts() {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+            document.getElementById('productsTable').innerHTML = `
+        <table class="data-table">
+            <tr><th>Название</th><th>Категория</th><th>Цена</th><th>Действия</th></tr>
+            ${products.map(p => `<tr>
+                <td>${p.name}</td><td>${p.category}</td><td>${p.base_price} ₽</td>
+                <td class="table-actions">
+                    <button class="edit-btn" onclick="editProduct(${p.id},'${p.name}','${p.category}',${p.base_price},'${p.description}','${p.image_url}',${p.strength},'${p.slug}')">✎</button>
+                    <button class="delete-btn" onclick="deleteProduct(${p.id})">✕</button>
+                </td></tr>`).join('')}
+        </table>`;
+        }
+
+        function showAddProduct() {
+            openModal(`<h3>Добавить товар</h3>
+        <div class="form-group"><label>Название</label><input id="pName"></div>
+        <div class="form-group"><label>Категория</label><select id="pCat"><option value="drink">Напиток</option><option value="food">Еда</option></select></div>
+        <div class="form-group"><label>Цена</label><input type="number" id="pPrice"></div>
+        <div class="form-group"><label>Описание</label><textarea id="pDesc"></textarea></div>
+        <div class="form-group"><label>URL картинки</label><input id="pImg"></div>
+        <div class="form-group"><label>Крепость (0-3)</label><input type="number" id="pStr" min="0" max="3"></div>
+        <button class="add-btn" onclick="saveProduct()">Сохранить</button>`);
+        }
+
+        async function saveProduct() {
+            const body = {
+                name: document.getElementById('pName').value,
+                category: document.getElementById('pCat').value,
+                base_price: +document.getElementById('pPrice').value,
+                description: document.getElementById('pDesc').value,
+                image_url: document.getElementById('pImg').value,
+                strength: +document.getElementById('pStr').value,
+            };
+            await fetch('/api/admin/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+            closeModal(); loadProducts();
+        }
+
+        function editProduct(id, name, cat, price, desc, img, str, slug) {
+            openModal(`<h3>Редактировать товар</h3>
+        <div class="form-group"><label>Название</label><input id="pName" value="${name}"></div>
+        <div class="form-group"><label>Категория</label><select id="pCat"><option value="drink" ${cat === 'drink' ? 'selected' : ''}>Напиток</option><option value="food" ${cat === 'food' ? 'selected' : ''}>Еда</option></select></div>
+        <div class="form-group"><label>Цена</label><input type="number" id="pPrice" value="${price}"></div>
+        <div class="form-group"><label>Описание</label><textarea id="pDesc">${desc}</textarea></div>
+        <div class="form-group"><label>URL картинки</label><input id="pImg" value="${img}"></div>
+        <div class="form-group"><label>Крепость</label><input type="number" id="pStr" value="${str}" min="0" max="3"></div>
+        <button class="add-btn" onclick="updateProduct(${id},'${slug}')">Сохранить</button>`);
+        }
+
+        async function updateProduct(id, slug) {
+            const body = {
+                name: document.getElementById('pName').value,
+                category: document.getElementById('pCat').value,
+                base_price: +document.getElementById('pPrice').value,
+                description: document.getElementById('pDesc').value,
+                image_url: document.getElementById('pImg').value,
+                strength: +document.getElementById('pStr').value,
+                slug: slug
+            };
+            await fetch('/api/admin/products/' + id, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+            closeModal(); loadProducts();
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('Удалить товар?')) return;
+            await fetch('/api/admin/products/' + id, { method: 'DELETE' });
+            loadProducts();
+        }
+        async function loadIngredients() {
+            const res = await fetch('/api/admin/ingredients');
+            const ings = await res.json();
+            document.getElementById('ingredientsTable').innerHTML = `
+        <table class="ingredients-table">
+            <tr><th>Название</th><th>Остаток</th><th>Ед.</th><th>Мин. запас</th><th>Статус</th><th>Действия</th></tr>
+            ${ings.map(i => {
+                const low = i.quantity <= i.min_stock;
+                return `<tr class="${low ? 'ingredient-low' : ''}">
+                    <td>${i.name}</td><td>${i.quantity}</td><td>${i.unit}</td><td>${i.min_stock}</td>
+                    <td style="color:${low ? 'red' : 'green'}">${low ? 'Мало!' : 'OK'}</td>
+                    <td><button class="edit-btn" onclick="editIngredient(${i.id},${i.quantity})">Изменить</button></td>
+                </tr>`;
+            }).join('')}
+        </table>`;
+        }
+
+        function editIngredient(id, qty) {
+            openModal(`<h3>Изменить количество</h3>
+        <div class="form-group"><label>Количество</label><input type="number" id="iQty" value="${qty}" step="0.1"></div>
+        <button class="add-btn" onclick="saveIngredient(${id})">Сохранить</button>`);
+        }
+
+        async function saveIngredient(id) {
+            await fetch('/api/admin/ingredients/' + id, {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: +document.getElementById('iQty').value })
+            });
+            closeModal(); loadIngredients();
+        }
+
+        function showAddIngredient() {
+            openModal(`<h3>Добавить ингредиент</h3>
+        <div class="form-group"><label>Название</label><input id="iName"></div>
+        <div class="form-group"><label>Количество</label><input type="number" id="iQty" step="0.1"></div>
+        <div class="form-group"><label>Единица</label><input id="iUnit" value="г"></div>
+        <div class="form-group"><label>Мин. запас</label><input type="number" id="iMin" step="0.1"></div>
+        <button class="add-btn" onclick="saveNewIngredient()">Сохранить</button>`);
+        }
+
+        async function saveNewIngredient() {
+            await fetch('/api/admin/ingredients', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: document.getElementById('iName').value,
+                    quantity: +document.getElementById('iQty').value,
+                    unit: document.getElementById('iUnit').value,
+                    min_stock: +document.getElementById('iMin').value
+                })
+            });
+            closeModal(); loadIngredients();
+        }
+
+        async function loadUsers() {
+            const res = await fetch('/api/admin/users');
+            const users = await res.json();
+            document.getElementById('usersTable').innerHTML = `
+        <table class="data-table">
+            <tr><th>ID</th><th>ФИО</th><th>Email</th><th>Роль</th><th>Бонусы</th><th>Действия</th></tr>
+            ${users.map(u => `<tr>
+                <td>${u.id}</td>
+                <td>${u.surname || ''} ${u.name || ''}</td>
+                <td>${u.email}</td>
+                <td>${u.role}</td>
+                <td>${u.loyalty_points}</td>
+                <td class="table-actions"><button class="edit-btn" onclick="editUser(${u.id},'${u.role}',${u.loyalty_points},${u.discount})">✎</button></td>
+            </tr>`).join('')}
+        </table>`;
+        }
+
+        function editUser(id, role, points, discount) {
+            openModal(`<h3>Редактировать пользователя</h3>
+        <div class="form-group"><label>Роль</label><select id="uRole">
+            <option value="user" ${role === 'user' ? 'selected' : ''}>user</option>
+            <option value="seller" ${role === 'seller' ? 'selected' : ''}>seller</option>
+            <option value="admin" ${role === 'admin' ? 'selected' : ''}>admin</option>
+        </select></div>
+        <div class="form-group"><label>Бонусы</label><input type="number" id="uPoints" value="${points}"></div>
+        <div class="form-group"><label>Скидка %</label><input type="number" id="uDiscount" value="${discount}"></div>
+        <button class="add-btn" onclick="saveUser(${id})">Сохранить</button>`);
+        }
+
+        async function saveUser(id) {
+            await fetch('/api/admin/users/' + id, {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    role: document.getElementById('uRole').value,
+                    loyalty_points: +document.getElementById('uPoints').value,
+                    discount: +document.getElementById('uDiscount').value
+                })
+            });
+            closeModal(); loadUsers();
+        }
+        async function loadQuestions() {
+            const res = await fetch('/api/admin/questions');
+            const qs = await res.json();
+            const el = document.getElementById('questionsList');
+            if (!qs.length) { el.innerHTML = '<p>Вопросов нет</p>'; return; }
+            el.innerHTML = qs.map(q => `
+        <div class="order-item" style="${q.is_read ? 'opacity:0.6' : ''}">
+            <div>
+                <p><b>${q.email}</b> — ${new Date(q.created_at).toLocaleString('ru')}</p>
+                <p>${q.message}</p>
+            </div>
+            ${!q.is_read ? `<button onclick="markRead(${q.id})">Прочитано</button>` : '<span>✓</span>'}
+        </div>`).join('');
+        }
+
+        async function markRead(id) {
+            await fetch('/api/admin/questions/' + id + '/read', { method: 'PUT' });
+            loadQuestions();
+        }
+
+        async function loadReports() {
+            const res = await fetch('/api/admin/reports');
+            const r = await res.json();
+            document.getElementById('reportsContent').innerHTML = `
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Заказов сегодня</h3><p>${r.ordersToday}</p></div>
+            <div class="stat-card"><h3>Выручка сегодня</h3><p>${r.revenueToday} ₽</p></div>
+            <div class="stat-card"><h3>Всего заказов</h3><p>${r.totalOrders}</p></div>
+            <div class="stat-card"><h3>Общая выручка</h3><p>${r.totalRevenue} ₽</p></div>
+            <div class="stat-card"><h3>Клиентов</h3><p>${r.users}</p></div>
+        </div>
+        <h3>Популярные товары</h3>
+        <table class="data-table">
+            <tr><th>Название</th><th>Продано шт.</th><th>Выручка</th></tr>
+            ${r.popularProducts.map(p => `<tr><td>${p.product_name}</td><td>${p.total_qty}</td><td>${p.total_revenue} ₽</td></tr>`).join('')}
+        </table>
+        <h3 style="margin-top:20px">Склад</h3>
+        <table class="ingredients-table">
+            <tr><th>Ингредиент</th><th>Остаток</th><th>Ед.</th><th>Мин.</th></tr>
+            ${r.ingredients.map(i => `<tr class="${i.quantity <= i.min_stock ? 'ingredient-low' : ''}"><td>${i.name}</td><td>${i.quantity}</td><td>${i.unit}</td><td>${i.min_stock}</td></tr>`).join('')}
+        </table>`;
+        }
+        function openModal(html) {
+            document.getElementById('modalBody').innerHTML = html;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+        document.getElementById('modalOverlay').addEventListener('click', e => {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        });
+        async function doLogout() {
+            const um = await getUserManager();
+            await um.logout();
+            window.location.href = '/log/authorization/';
+        }
+    </script>
+    <footer>
+        <a href="index.html">
+            <img src="/assets/images/logo_footer.svg" alt="Логотип кофейни">
+        </a>
+        <nav>
+            <div>
+                <ul>
+                    <a href="#section1">
+                        <li>О нас</li>
+                    </a>
+                    <a href="#section2">
+                        <li>Меню</li>
+                    </a>
+                    <a href="#section3">
+                        <li>Отзывы</li>
+                    </a>
+                </ul>
+                <ul>
+                    <a href="#section4">
+                        <li>Контакты</li>
+                    </a>
+                    <a href="#section5">
+                        <li>Вопросы</li>
+                    </a>
+                </ul>
+            </div>
+            <ul>
+                <li>Пользовательское соглашение</li>
+                <li>Политика конфиденциальности</li>
+            </ul>
+        </nav>
+        <div class="social_media">
+            <li>Мы в социальных сетях</li>
+            <div>
+                <a href="https://t.me/marik_hguu"><img class="img" src="/assets/images/telegram.svg" alt="Телеграм"></a>
+                <a href="https://vk.com/mari_kaverina"><img class="img" src="/assets/images/odnoklassniki.svg"
+                        alt="ОК"></a>
+                <a href="https://vk.com/mari_kaverina"><img class="img" src="/assets/images/vk.svg" alt="ВК"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

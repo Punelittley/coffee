@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&family=Oranienbaum&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poiret+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&family=Yanone+Kaffeesatz:wght@200..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    background-color: rgba(237, 228, 204, 0.8);
+    padding: 1vw 7vw;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    backdrop-filter: blur(3px);
+    border-bottom: 1px solid rgba(111, 78, 55, 0.5);
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+
+    ul {
+        display: flex;
+        list-style: none;
+        gap: 2vw;
+        margin-right: 10vw;
+
+        li {
+            font-size: 25px;
+            font-family: "Arsenal SC";
+        }
+    }
+
+    img {
+        width: 3vw;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+        transition: transform 0.5s ease;
+    }
+}
+
+main {
+    background-color: #EDE4CC;
+}
+
+h2 {
+    font-family: "Arsenal SC";
+    font-size: 45px;
+    font-weight: 400;
+}
+
+h3 {
+    font-family: "Arsenal SC";
+    font-size: 25px;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+span {
+    color: #6F4E37;
+}
+
+button {
+    color: black;
+    background-color: #947056;
+    font-family: "Arsenal SC";
+    font-size: 25px;
+    font-weight: 400;
+    border: none;
+    padding: 10px 22px;
+}
+
+form {
+    display: flex;
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #9A9A9A;
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+    }
+
+    button {
+        margin-top: 10px;
+        color: black;
+        background-color: #947056;
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+        border: none;
+        padding: 10px 22px;
+    }
+
+    input {
+        background-color: white;
+        padding: 15px 20px;
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+        border: none;
+    }
+}
+
+footer {
+    background-color: #6F4E37;
+    border-top: 1px solid #6F4E37;
+    padding: 3vw 7vw;
+    display: flex;
+    justify-content: space-between;
+
+    nav {
+        display: flex;
+        align-items: baseline;
+        gap: 8vw;
+
+        div {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+            margin-right: 0;
+            flex-direction: column;
+
+            li {
+                font-size: 25px;
+                font-family: "Arsenal SC";
+                color: white;
+            }
+        }
+    }
+
+    li {
+        font-size: 25px;
+        font-family: "Arsenal SC";
+        color: white;
+        list-style: none;
+    }
+
+    .img:hover {
+        transform: scale(1.1);
+        transition: transform 0.5s ease;
+    }
+}
+
+.social_media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+}
+
+#sun,
+#moon {
+    position: absolute;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    max-width: 2.5vw;
+}
+
+.opasity {
+    opacity: 0;
+}
+
+.mode_class {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-right: 15px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+body.dark-theme {
+    background-color: #2d2d2d;
+    color: #f0f0f0;
+}
+
+body.dark-theme .moon {
+    opacity: 0;
+}
+
+body.dark-theme .sun {
+    opacity: 1;
+}
+
+body.dark-theme header {
+    background-color: #2d2d2d;
+}
+
+body.dark-theme footer {
+    background-color: #2d2d2d;
+}
+
+body.dark-theme a {
+    color: white;
+}
+
+body.dark-theme p {
+    color: white;
+}
+
+body.dark-theme .card h3 {
+    color: white;
+}
+
+body.dark-theme .slide p,
+h3 {
+    color: black;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 10px 15px 0 0;
+}
+
+.theme-icon {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-icon.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.theme-icon:not(.active) {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+body.dark-theme main {
+    background-color: #2d2d2d;
+}
+
+.burger-menu {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #EDE4CC;
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-nav.active {
+    display: flex;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-nav ul li {
+    font-size: 25px;
+    font-family: "Arsenal SC";
+    color: black;
+    margin: 20px 0;
+}
+
+.mobile-nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.close-mobile-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .burger-menu {
+        display: block;
+        z-index: 1001;
+    }
+
+    header nav {
+        display: none;
+    }
+}
+
+.breadcrumbs {
+    padding: 15px 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.breadcrumbs ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs li {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+.breadcrumbs li:after {
+    content: '/';
+    margin-left: 5px;
+    color: #999;
+}
+
+.breadcrumbs li:last-child:after {
+    content: '';
+}
+
+.breadcrumbs a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumbs a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .breadcrumbs {
+        padding: 10px 15px;
+    }
+    .breadcrumbs li {
+        font-size: 12px;
+    }
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal_content {
+  background-color: #EDE4CC;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+
+  p {
+    font-size: 25px;
+    font-family: "Arsenal SC";
+    color: black;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex_ {
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+}
+
+.scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+        transform: translateY(-3px);
+    }
+    
+    .scroll-to-top img {
+        width: 24px;
+        height: 24px;
+        rotate: 90deg;
+    }
+
+@media screen and (max-width: 1024px) {
+
+    nav ul {
+        gap: 10px;
+    }
+
+    footer nav ul li, .social_media li{
+        font-size: 20px;
+    }
+
+    .social_media li {
+        text-align: center;
+    }
+
+    nav {
+        gap: 5vw;
+    }
+    
+}

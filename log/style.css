@@ -1,0 +1,99 @@
+header > a img {
+    width: 5vw;
+    max-width: 70px;
+}
+
+body {
+    background-color: #EDE4CC;
+}
+
+.auth-container {
+    max-width: 480px;
+    margin: 120px auto 60px;
+    padding: 40px;
+    border: 2px solid #6F4E37;
+    background: #fff8f0;
+}
+
+.auth-container h2 {
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #6F4E37;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+}
+
+.auth-container input {
+    padding: 14px 18px;
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 20px;
+    border: 1px solid #6F4E37;
+    background: #EDE4CC;
+    outline: none;
+}
+
+.auth-container input:focus {
+    border-color: #947056;
+    box-shadow: 0 0 0 2px rgba(148, 112, 86, 0.2);
+}
+
+.auth-container button[type="submit"] {
+    padding: 14px;
+    background: #6F4E37;
+    color: white;
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-container button[type="submit"]:hover {
+    background: #5a3d2b;
+}
+
+.auth-container label {
+    text-align: center;
+    margin-top: 8px;
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 18px;
+}
+
+.auth-container label a {
+    color: #6F4E37;
+    text-decoration: underline;
+}
+
+.error-msg {
+    color: #c0392b;
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 16px;
+    min-height: 22px;
+    text-align: center;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.checkbox-row p {
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}

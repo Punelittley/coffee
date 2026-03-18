@@ -1,0 +1,350 @@
+.info_product {
+    padding: 8vw 7vw 6vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    font-family: "Arsenal SC";
+    font-size: 25px;
+    font-weight: 400;
+}
+
+h4 {
+    font-family: "Arsenal SC";
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.about_product {
+    display: flex;
+    flex-direction: column;
+    max-width: 45vw;
+    justify-content: center;
+
+    h2 {
+        align-self: center;
+        margin-bottom: 50px;
+    }
+
+    div {
+        display: flex;
+    }
+
+    img {
+        margin-top: 4px;
+        margin-right: 5px;
+    }
+
+    button {
+        margin-top: 55px;
+    }
+}
+
+.characteristic {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.coffee {
+    border: 1px solid #6F4E37;
+    height: 520px;
+    width: 520px;
+    overflow: hidden;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+
+
+
+
+
+
+
+
+.additional {
+    padding: 0 7vw 6vw;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        align-self: center;
+        margin-bottom: 50px;
+    }
+}
+
+h5 {
+    font-family: "Arsenal SC";
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.checkbox {
+    display: flex;
+    min-width: 20vw;
+    align-items: center;
+    gap: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+.container_ {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #6F4E37;
+    background-color: #EDE4CC;
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #947056;
+}
+
+input[type="checkbox"]:checked::before {
+    content: url(/assets/images/check.svg);
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+button {
+    max-width: 30vw;
+}
+
+
+
+
+
+
+
+
+
+
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+.slider {
+    display: flex;
+    gap: 8%;
+}
+
+.slider_container {
+    display: flex;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin: auto;
+}
+
+.card {
+    min-width: 12.5%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 2.2%;
+}
+
+#button_next {
+    transform: scaleX(-1);
+    right: 7vw;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+#button_back {
+    left: 7vw;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+#button_back:hover {
+    transform: scale(1.1);
+}
+
+#button_next:hover {
+    transform: scaleX(-1.1) scaleY(1.1);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #947056;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    transform: scale(1.2);
+    background-color: #6F4E37;
+}
+
+
+
+
+
+
+
+
+
+.card {
+    border: 1px solid #6F4E37;
+    display: flex;
+    flex-direction: column;
+    width: 304px;
+    position: relative;
+
+    .img {
+        border-bottom: 1px solid #6F4E37;
+        width: 100%;
+        height: 222px;
+        overflow: hidden;
+        object-fit: cover;
+        object-position: bottom;
+    }
+
+    p {
+        font-family: "Arsenal SC";
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    button {
+        color: black;
+        background-color: #947056;
+        font-family: "Arsenal SC";
+        font-size: 17px;
+        font-weight: 400;
+        border: none;
+        padding: 10px 22px;
+        max-width: fit-content;
+    }
+
+    a {
+        transform-origin: left center;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vw;
+    flex-wrap: wrap;
+}
+
+.fill {
+    padding: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.heart,
+.heart_ {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.img_block {
+    position: relative;
+}
+
+.unactive {
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .info_product {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .about_product {
+        max-width: 70vw;
+        text-align: center;
+    }
+
+    .characteristic {
+        align-items: center;
+    }
+
+    .container {
+        max-width: 70vw;
+        align-items: center;
+    }
+
+    .checkbox {
+        width: 200px;
+    }
+
+    .category {
+
+    }
+}

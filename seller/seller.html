@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель продавца — Заря и Зерно</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        .seller-content {
+            padding: 120px 7vw 40px;
+        }
+
+        .seller-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .seller-title h2 {
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+        }
+
+        .seller-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 18px;
+        }
+
+        .seller-badge {
+            background: #947056;
+            color: white;
+            padding: 4px 14px;
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .seller-logout {
+            padding: 8px 20px;
+            background: #6F4E37;
+            color: white;
+            border: none;
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .seller-logout:hover {
+            background: #5a3d2b;
+        }
+
+        .order-card {
+            background: #EDE9E0;
+            border: 2px solid #6F4E37;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .order-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+            font-family: "Arsenal SC", sans-serif;
+        }
+
+        .order-card p {
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 17px;
+            margin: 4px 0;
+        }
+
+        .order-card .items {
+            margin: 10px 0;
+        }
+
+        .next-status-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            background: #6F4E37;
+            color: white;
+            border: 2px solid #6F4E37;
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .next-status-btn:hover {
+            background: #5a3d2b;
+        }
+
+        .next-status-btn:disabled {
+            background: #999;
+            border-color: #999;
+            cursor: default;
+        }
+
+        .seller-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .seller-filters button {
+            padding: 10px 20px;
+            background: #947056;
+            color: white;
+            border: 2px solid #947056;
+            font-family: "Arsenal SC", sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .seller-filters button.active {
+            background: #6F4E37;
+            border-color: #6F4E37;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/index.html">
+            <img src="/assets/images/logo.svg" alt="Логотип кофейни">
+        </a>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <ul>
+                <a href="/index.html#section1">
+                    <li>О нас</li>
+                </a>
+                <a href="/index.html#section2">
+                    <li>Меню</li>
+                </a>
+                <a href="/index.html#section3">
+                    <li>Отзывы</li>
+                </a>
+                <a href="/index.html#section4">
+                    <li>Контакты</li>
+                </a>
+                <a href="/index.html#section5">
+                    <li>Вопросы</li>
+                </a>
+            </ul>
+            <div class="theme-toggle">
+                <img src="/assets/images/moon.svg" alt="Темная тема" id="moon-icon" class="theme-icon active">
+                <img src="/assets/images/sun.svg" alt="Светлая тема" id="sun-icon" class="theme-icon">
+            </div>
+            <img src="/assets/images/bag.svg" alt="Корзина" onclick="cart()" style="cursor:pointer">
+            <div class="auth-icon-wrap">
+                <a href="/log/authorization/" class="auth-login-btn" style="display:inline-block;">
+                    <img src="/assets/images/account.svg" alt="Войти" title="Войти" style="cursor:pointer">
+                </a>
+                <img src="/assets/images/account.svg" alt="Профиль" title="Профиль" class="auth-profile-btn"
+                    style="display:none;cursor:pointer" onclick="login()">
+            </div>
+        </nav>
+
+        <div class="mobile-nav" id="mobileNav">
+            <span class="close-mobile-nav" id="closeMobileNav">&times;</span>
+            <ul>
+                <li><a href="/index.html#section1">О нас</a></li>
+                <li><a href="/index.html#section2">Меню</a></li>
+                <li><a href="/index.html#section3">Отзывы</a></li>
+                <li><a href="/index.html#section4">Контакты</a></li>
+                <li><a href="/index.html#section5">Вопросы</a></li>
+            </ul>
+            <div class="mobile-nav-icons">
+                <div class="theme-toggle">
+                    <img src="/assets/images/moon.svg" alt="Темная тема" id="moon-icon-mobile"
+                        class="theme-icon active">
+                    <img src="/assets/images/sun.svg" alt="Светлая тема" id="sun-icon-mobile" class="theme-icon">
+                </div>
+                <img src="/assets/images/bag.svg" alt="Корзина" onclick="cart()">
+                <div class="auth-icon-wrap">
+                    <a href="/log/authorization/" class="auth-login-btn" style="display:inline-block;">
+                        <img src="/assets/images/account.svg" alt="Войти">
+                    </a>
+                    <img src="/assets/images/account.svg" alt="Профиль" class="auth-profile-btn"
+                        style="display:none;cursor:pointer" onclick="login()">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="seller-content">
+            <div class="seller-title">
+                <h2>Панель продавца</h2>
+                <div class="seller-info">
+                    <span class="seller-badge">Продавец</span>
+                    <span id="sellerName">Загрузка...</span>
+                    <button class="seller-logout" onclick="doLogout()">Выйти</button>
+                </div>
+            </div>
+
+            <div class="seller-filters" id="filters"></div>
+            <div id="ordersContainer"></div>
+        </div>
+    </main>
+
+    <script src="/js/class.js"></script>
+    <script src="/js/goods/log_cart.js"></script>
+    <script src="/js/log/log.js"></script>
+    <script src="/js/home/mode.js"></script>
+    <script src="/js/home/burger.js"></script>
+    <script src="/js/auth-header.js"></script>
+    <script>
+        const STATUS_LABELS = { new: 'Новый', cooking: 'Готовится', ready: 'Готов к выдаче', delivered: 'Выдан' };
+        const STATUS_NEXT = { new: 'cooking', cooking: 'ready', ready: 'delivered' };
+        const NEXT_LABELS = { cooking: ' Начать готовку', ready: 'Готово', delivered: 'Выдать' };
+
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const um = await getUserManager();
+            const user = um.readCurrentUser();
+            if (!user || (user.role !== 'seller' && user.role !== 'admin')) {
+                window.location.href = '/log/authorization/';
+                return;
+            }
+            document.getElementById('sellerName').textContent = (user.surname || '') + ' ' + (user.name || '');
+
+            const filters = document.getElementById('filters');
+            ['all', 'new', 'cooking', 'ready', 'delivered'].forEach(s => {
+                const btn = document.createElement('button');
+                btn.textContent = s === 'all' ? 'Все' : STATUS_LABELS[s];
+                btn.className = s === 'all' ? 'active' : '';
+                btn.onclick = () => {
+                    currentFilter = s;
+                    filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    loadOrders();
+                };
+                filters.appendChild(btn);
+            });
+
+            loadOrders();
+            setInterval(loadOrders, 15000);
+        });
+
+        async function loadOrders() {
+            try {
+                const res = await fetch('/api/admin/orders?status=' + currentFilter);
+                const orders = await res.json();
+                const el = document.getElementById('ordersContainer');
+
+                if (!orders.length) {
+                    el.innerHTML = '<p style="font-family:Arsenal SC;font-size:20px;padding:20px;">Нет заказов</p>';
+                    return;
+                }
+
+                el.innerHTML = orders.map(o => {
+                    const nextStatus = STATUS_NEXT[o.status];
+                    return `
+            <div class="order-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+                    <h3>Заказ №${o.id}</h3>
+                    <span style="font-family:Arsenal SC;font-weight:700;color:#6F4E37;">${STATUS_LABELS[o.status]}</span>
+                </div>
+                <p><b>Клиент:</b> ${o.surname || ''} ${o.user_name || ''}</p>
+                <p><b>Сумма:</b> ${o.total} ₽</p>
+                <p><b>Время:</b> ${new Date(o.created_at).toLocaleString('ru')}</p>
+                <div class="items">
+                    <p><b>Позиции:</b></p>
+                    ${o.items.map(i => `<p>• ${i.product_name} × ${i.quantity} — ${i.price} ₽</p>`).join('')}
+                </div>
+                ${nextStatus
+                            ? `<button class="next-status-btn" onclick="advanceOrder(${o.id},'${nextStatus}',this)">${NEXT_LABELS[nextStatus]}</button>`
+                            : '<button class="next-status-btn" disabled>Заказ завершён</button>'}
+            </div>`;
+                }).join('');
+            } catch (e) {
+                console.error('Ошибка загрузки заказов:', e);
+            }
+        }
+
+        async function advanceOrder(id, status, btn) {
+            btn.disabled = true;
+            btn.textContent = 'Обработка...';
+            try {
+                const res = await fetch('/api/admin/orders/' + id + '/status', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    alert(data.error);
+                    btn.disabled = false;
+                    btn.textContent = NEXT_LABELS[status];
+                    return;
+                }
+                loadOrders();
+            } catch (e) {
+                alert('Ошибка сети');
+                btn.disabled = false;
+                btn.textContent = NEXT_LABELS[status];
+            }
+        }
+
+        async function doLogout() {
+            const um = await getUserManager();
+            await um.logout();
+            window.location.href = '/log/authorization/';
+        }
+    </script>
+    <footer>
+        <a href="index.html">
+            <img src="/assets/images/logo_footer.svg" alt="Логотип кофейни">
+        </a>
+        <nav>
+            <div>
+                <ul>
+                    <a href="#section1">
+                        <li>О нас</li>
+                    </a>
+                    <a href="#section2">
+                        <li>Меню</li>
+                    </a>
+                    <a href="#section3">
+                        <li>Отзывы</li>
+                    </a>
+                </ul>
+                <ul>
+                    <a href="#section4">
+                        <li>Контакты</li>
+                    </a>
+                    <a href="#section5">
+                        <li>Вопросы</li>
+                    </a>
+                </ul>
+            </div>
+            <ul>
+                <li>Пользовательское соглашение</li>
+                <li>Политика конфиденциальности</li>
+            </ul>
+        </nav>
+        <div class="social_media">
+            <li>Мы в социальных сетях</li>
+            <div>
+                <a href="https://t.me/marik_hguu"><img class="img" src="/assets/images/telegram.svg" alt="Телеграм"></a>
+                <a href="https://vk.com/mari_kaverina"><img class="img" src="/assets/images/odnoklassniki.svg"
+                        alt="ОК"></a>
+                <a href="https://vk.com/mari_kaverina"><img class="img" src="/assets/images/vk.svg" alt="ВК"></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

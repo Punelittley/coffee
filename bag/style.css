@@ -1,0 +1,293 @@
+main {
+    padding: 8vw 7vw 6vw;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h2 {
+    display: flex;
+    align-self: center;
+    margin-bottom: 50px;
+}
+
+h3 {
+    font-family: "Arsenal SC";
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+
+.checkbox {
+    display: flex;
+    min-width: 20vw;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #6F4E37;
+    background-color: #EDE4CC;
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #947056;
+}
+
+input[type="checkbox"]:checked::before {
+    content: url(/assets/images/check.svg);
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+p {
+    font-family: "Arsenal SC";
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    max-width: max-content;
+    position: absolute;
+    align-self: flex-end;
+    margin-top: 7vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h4 {
+    font-family: "Arsenal SC";
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+button {
+    margin: 0;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card {
+    border: 1px solid #6F4E37;
+    display: flex;
+    flex-direction: column;
+    width: 304px;
+    position: relative;
+}
+
+.card .img {
+    border-bottom: 1px solid #6F4E37;
+    width: 100%;
+    height: 222px;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.card p {
+    font-family: "Arsenal SC";
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.card button {
+    color: black;
+    background-color: #947056;
+    font-family: "Arsenal SC";
+    font-size: 17px;
+    font-weight: 400;
+    border: none;
+    padding: 10px 22px;
+    max-width: fit-content;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.card a {
+    transform-origin: left center;
+}
+
+strong {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vw;
+    flex-wrap: wrap;
+}
+
+.container_drinks,
+.container_food {
+    display: flex;
+    max-width: 57vw;
+    flex-wrap: wrap;
+    gap: 3vw;
+}
+
+.menu {
+    padding: 7vw 7vw 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.fill {
+    padding: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.heart,
+.heart_ {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.img_block {
+    position: relative;
+}
+
+.unactive {
+    opacity: 0;
+}
+
+body.dark-theme h3 {
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.45);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal_content {
+    position: relative;
+    width: min(500px, 100%);
+    padding: 32px 24px;
+    background-color: #EDE4CC;
+    border: 1px solid #6F4E37;
+}
+
+.modal_content p {
+    font-size: 24px;
+    line-height: 1.3;
+    text-align: center;
+    color: #2f241d;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #6F4E37;
+}
+
+body.dark-theme .modal_content {
+    background-color: #2f241d;
+    border-color: #EDE4CC;
+}
+
+body.dark-theme .modal_content p,
+body.dark-theme .close {
+    color: #EDE4CC;
+}
+
+@media screen and (max-width: 1024px) {
+    nav div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    footer nav ul li,
+    .social_media li {
+        font-size: 20px;
+    }
+
+    .social_media li {
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container h3 {
+        align-self: center;
+    }
+
+    aside {
+        position: inherit;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    aside h3 {
+        align-self: center;
+    }
+
+    main {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drinks,
+    .food {
+        flex-direction: column;
+        display: flex;
+        align-self: center;
+    }
+}

@@ -1,0 +1,342 @@
+section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/images/coffee_1.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    padding: 0 7vw;
+    align-items: center;
+    background-attachment: fixed;
+
+    h1 {
+        color: white;
+        font-family: "Arsenal SC";
+        font-size: 52px;
+        font-weight: 400;
+        max-width: 42vw;
+    }
+}
+
+.about_us {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7vw 7vw 0;
+
+    p {
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+        color: black;
+    }
+}
+
+.about {
+    max-width: 35vw;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.text_about_us {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.images {
+    height: 20%;
+    display: flex;
+    gap: 1.3vw;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 1.3vw;
+    }
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card {
+    border: 1px solid #6F4E37;
+    display: flex;
+    flex-direction: column;
+    width: 304px;
+    position: relative;
+
+    .img {
+        border-bottom: 1px solid #6F4E37;
+        width: 100%;
+        height: 222px;
+        overflow: hidden;
+        object-fit: cover;
+        object-position: bottom;
+    }
+
+    p {
+        font-family: "Arsenal SC";
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    button {
+        color: black;
+        background-color: #947056;
+        font-family: "Arsenal SC";
+        font-size: 17px;
+        font-weight: 400;
+        border: none;
+        padding: 10px 22px;
+        max-width: fit-content;
+    }
+
+    a {
+        transform-origin: left center;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vw;
+    flex-wrap: wrap;
+}
+
+.menu {
+    padding: 7vw 7vw 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.fill {
+    padding: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.heart,
+.heart_ {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.img_block {
+    position: relative;
+}
+
+.unactive {
+    opacity: 0;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7vw 7vw 0;
+    gap: 50px;
+}
+
+.slide {
+    display: flex;
+    align-items: center;
+    background-color: #947056;
+    height: 272px;
+    gap: 20px;
+    padding: 20px;
+    min-width: 49%;
+}
+
+.slider_container {
+    backdrop-filter: blur(10px);
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider {
+    gap: 2%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 2%;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    max-width: 86vw;
+}
+
+#button_next {
+    transform: scaleX(-1);
+    right: 7vw;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+#button_back {
+    left: 7vw;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+#button_back:hover {
+    transform: scale(1.1);
+}
+
+#button_next:hover {
+    transform: scaleX(-1.1) scaleY(1.1);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+        font-family: "Arsenal SC";
+        font-size: 17px;
+        font-weight: 400;
+    }
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #947056;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    transform: scale(1.2);
+    background-color: #6F4E37;
+}
+
+.contacts {
+    display: flex;
+    padding: 7vw;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+    }
+}
+
+.about_coffeetary {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.contact_info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#map {
+    width: 50vw; 
+    height: 450px;
+}
+
+.questions {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(/assets/images/questions.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 6vw 7vw;
+
+    h2 {
+        color: white;
+    }
+
+    textarea {
+        background-color: white;
+        padding: 15px 20px;
+        font-family: "Arsenal SC";
+        font-size: 25px;
+        font-weight: 400;
+        border: none;
+    }
+
+    textarea {
+        height: 125px;
+    }
+}
+
+form { 
+    max-width: 50%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    nav img {
+        width: 4vw;
+    }
+
+    nav ul li {
+        font-size: 22px;
+    }
+
+    section h1 {
+        font-size: 35px;
+    }
+
+    .about_us {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .text_about_us {
+        max-width: 70vw;
+    }
+
+    .about {
+        max-width: 70vw;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    .slide p {
+        font-size: 15px;
+    }
+
+    .slide h3 {
+        font-size: 20px;
+    }
+
+    .img_f {
+        min-width: 10vw;
+    }
+}
+
